@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.UsersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Users">
+        <id column="UserID" property="userid" />
+        <result column="Email" property="email" />
+        <result column="Password" property="password" />
+        <result column="PhoneNumber" property="phonenumber" />
+        <result column="Username" property="username" />
+        <result column="Created_At" property="createdAt" />
+        <result column="Last_Login" property="lastLogin" />
+        <result column="Status" property="status" />
+        <result column="RoleId" property="roleid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        UserID, Email, Password, PhoneNumber, Username, Created_At, Last_Login, Status, RoleId
+    </sql>
+
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Users">
+        select * from users ${ew.customSqlSegment}
+    </select>
+</mapper>

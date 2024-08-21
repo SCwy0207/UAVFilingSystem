@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.DronesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Drones">
+        <id column="DroneID" property="droneid" />
+        <result column="UserID" property="userid" />
+        <result column="Manufacturer" property="manufacturer" />
+        <result column="ProductName" property="productname" />
+        <result column="Model" property="model" />
+        <result column="SerialNumber" property="serialnumber" />
+        <result column="UniqueID" property="uniqueid" />
+        <result column="Category" property="category" />
+        <result column="Type" property="type" />
+        <result column="EmptyWeight" property="emptyweight" />
+        <result column="MaxTakeoffWeight" property="maxtakeoffweight" />
+        <result column="Purpose" property="purpose" />
+        <result column="FrontPhoto" property="frontphoto" />
+        <result column="SerialPhoto" property="serialphoto" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DroneID, UserID, Manufacturer, ProductName, Model, SerialNumber, UniqueID, Category, Type, EmptyWeight, MaxTakeoffWeight, Purpose, FrontPhoto, SerialPhoto
+    </sql>
+
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Drones">
+        select * from drones ${ew.customSqlSegment}
+    </select>
+</mapper>

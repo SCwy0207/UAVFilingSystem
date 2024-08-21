@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.DroneflightareasMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Droneflightareas">
+        <id column="AreaID" property="areaid" />
+        <result column="DroneID" property="droneid" />
+        <result column="PrimaryArea" property="primaryarea" />
+        <result column="SecondaryArea" property="secondaryarea" />
+        <result column="TertiaryArea" property="tertiaryarea" />
+        <result column="SpecialArea" property="specialarea" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AreaID, DroneID, PrimaryArea, SecondaryArea, TertiaryArea, SpecialArea
+    </sql>
+
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Droneflightareas">
+        select * from droneflightareas ${ew.customSqlSegment}
+    </select>
+</mapper>

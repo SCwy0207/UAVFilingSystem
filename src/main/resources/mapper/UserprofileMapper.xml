@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.UserprofileMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Userprofile">
+        <id column="ProfileID" property="profileid" />
+        <result column="UserID" property="userid" />
+        <result column="FirstName" property="firstname" />
+        <result column="LastName" property="lastname" />
+        <result column="Gender" property="gender" />
+        <result column="DateOfBirth" property="dateofbirth" />
+        <result column="Bio" property="bio" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ProfileID, UserID, FirstName, LastName, Gender, DateOfBirth, Bio
+    </sql>
+
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Userprofile">
+        SELECT * FROM userprofile ${ew.customSqlSegment}
+    </select>
+
+</mapper>
