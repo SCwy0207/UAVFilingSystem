@@ -1,6 +1,9 @@
 package com.wzxy.uavfilingsystem.common;
 
+import com.wzxy.uavfilingsystem.entity.Userprofile;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Result {

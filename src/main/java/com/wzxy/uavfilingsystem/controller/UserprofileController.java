@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
+import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
 import com.wzxy.uavfilingsystem.service.UserprofileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,14 @@ public class UserprofileController {
     private UserprofileService userprofileService;
     //新增
     @PostMapping("/save")
-    public boolean save(@RequestBody Userprofile userProfile){return userprofileService.save(userProfile);}
+    public boolean save(@RequestBody Userprofile userProfile) {
+        // 检查 Gender 字段是否为空
+        if (userProfile.getGender() == null || userProfile.getGender().trim().isEmpty()) {
+            userProfile.setGender("Other"); // 设置默认值
+        }
+        return userprofileService.save(userProfile);
+    }
+
     //删除
     @GetMapping("/delete")
     public boolean delete(Integer profileid){return userprofileService.removeById(profileid);}
@@ -47,22 +55,25 @@ public class UserprofileController {
         return userprofileService.list(lambdaQueryWrapper);
     }
 
-    //分页
+    //分页查询（通过userid）
     @PostMapping("/listPage")
     public List<Userprofile> listPage(@RequestBody QueryPageParam query){
         System.out.println(query);
         HashMap param =query.getParam();
-        String profileid = (String)param.get("profileid");
-        System.out.println("profileid: " + profileid);
-
+        System.out.println("Param: " + param);
+        System.out.println("User ID=== " + param.get("userid"));
+        String useridStr = (String)param.get("userid");
+        Integer userid =null;
         //创建page对象
         Page<Userprofile> page =new Page();
         page.setCurrent(query.getPageNum());
         page.setSize(query.getPageSize());
         //创建LambdaQueryWrapper对象
         LambdaQueryWrapper<Userprofile> lambdaQueryWrapper= new LambdaQueryWrapper<>();
-        if(StringUtils.isNotBlank(profileid) && !"null".equals(profileid)){
-            lambdaQueryWrapper.eq(Userprofile::getProfileid,profileid);
+        if(StringUtils.isNotBlank(useridStr) && !"null".equals(useridStr)){
+            userid = Integer.parseInt(useridStr);
+            lambdaQueryWrapper.eq(Userprofile::getUserid,userid);
+            System.out.println("Querying with User ID: " + userid);
         }
         //执行分页操作
         IPage<Userprofile> result = userprofileService.pageC(page,lambdaQueryWrapper);
