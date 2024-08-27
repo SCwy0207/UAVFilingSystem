@@ -2,6 +2,7 @@ package com.wzxy.uavfilingsystem.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
@@ -60,7 +61,9 @@ public class UserprofileController {
         page.setSize(query.getPageSize());
         //创建LambdaQueryWrapper对象
         LambdaQueryWrapper<Userprofile> lambdaQueryWrapper= new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(Userprofile::getProfileid,profileid);
+        if(StringUtils.isNotBlank(profileid) && !"null".equals(profileid)){
+            lambdaQueryWrapper.eq(Userprofile::getProfileid,profileid);
+        }
         //执行分页操作
         IPage<Userprofile> result = userprofileService.pageC(page,lambdaQueryWrapper);
         System.out.println("total==="+result.getTotal());

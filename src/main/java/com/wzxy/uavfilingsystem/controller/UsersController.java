@@ -9,6 +9,7 @@ import com.wzxy.uavfilingsystem.common.QueryPageParam;
 import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.UsersService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +47,10 @@ public class UsersController {
     @PostMapping("/search")
     public List<Users> search(@RequestBody Users user){
         LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper();
-        lambdaQueryWrapper.like(Users::getUsername,user.getUsername());
+        if(StringUtils.isNotBlank(user.getUsername())){
+            lambdaQueryWrapper.like(Users::getUsername,user.getUsername());
+        }
+        //lambdaQueryWrapper.eq(Users::getUsername,user.getUsername());
         return usersService.list(lambdaQueryWrapper);
     }
     //分页
@@ -87,7 +91,7 @@ public class UsersController {
         }
         //IPage result=userService.pageC(page);
         IPage<Users> result=usersService.pageC(page,lambdaQueryWrapper);
-        System.out.println("totol===" + result.getTotal());
+        System.out.println("total===" + result.getTotal());
         return Result.success(result.getTotal(),result.getRecords());
     }
 
