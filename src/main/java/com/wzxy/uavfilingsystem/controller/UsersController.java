@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -67,7 +68,7 @@ public class UsersController {
         page.setCurrent(query.getPageNum());
         page.setSize(query.getPageSize());
         LambdaQueryWrapper<Users> lambdaQueryWrapper=new LambdaQueryWrapper();
-        lambdaQueryWrapper.like(Users::getUsername,username);
+        lambdaQueryWrapper.eq(Users::getUsername,username);
         //IPage result=userService.pageC(page);
         IPage<Users> result=usersService.pageC(page,lambdaQueryWrapper);
         System.out.println("total===" + result.getTotal());
@@ -93,6 +94,25 @@ public class UsersController {
         IPage<Users> result=usersService.pageC(page,lambdaQueryWrapper);
         System.out.println("total===" + result.getTotal());
         return Result.success(result.getTotal(),result.getRecords());
+    }
+    //通过username获得userid
+    @GetMapping("/getUserid")
+    public Map<String, Object> getUserid(@RequestParam String username) {
+        LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Users::getUsername, username);
+
+        // 查询匹配的用户
+        Users user = usersService.getOne(lambdaQueryWrapper);
+
+        // 准备返回数据
+        Map<String, Object> response = new HashMap<>();
+        if (user != null) {
+            response.put("userid", user.getUserid());
+        } else {
+            response.put("error", "用户未找到");
+        }
+
+        return response;
     }
 
 }
