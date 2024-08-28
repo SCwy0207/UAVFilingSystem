@@ -45,7 +45,7 @@ public class CodeGenerator {
         AutoGenerator mpg = new AutoGenerator();
         //全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir")+"/UAVFilingS";
+        String projectPath = System.getProperty("user.dir")+"/UAVFilingSystem";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("文王寰宇");
         gc.setOpen(false);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.ManufacturersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Manufacturers">
+        <id column="ManufacturerID" property="manufacturerid" />
+        <result column="ManufacturerName" property="manufacturername" />
+        <result column="Country" property="country" />
+        <result column="Website" property="website" />
+        <result column="CreatedAt" property="createdat" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ManufacturerID, ManufacturerName, Country, Website, CreatedAt
+    </sql>
+
+</mapper>

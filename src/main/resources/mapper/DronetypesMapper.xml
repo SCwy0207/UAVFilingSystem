@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzxy.uavfilingsystem.mapper.DronetypesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wzxy.uavfilingsystem.entity.Dronetypes">
+        <id column="DroneTypeID" property="dronetypeid" />
+        <result column="ManufacturerID" property="manufacturerid" />
+        <result column="Model" property="model" />
+        <result column="RegistrationName" property="registrationname" />
+        <result column="AllowFlight" property="allowflight" />
+        <result column="CreatedAt" property="createdat" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DroneTypeID, ManufacturerID, Model, RegistrationName, AllowFlight, CreatedAt
+    </sql>
+
+</mapper>
