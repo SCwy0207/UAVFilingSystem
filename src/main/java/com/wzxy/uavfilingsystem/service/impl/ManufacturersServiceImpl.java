@@ -1,9 +1,13 @@
 package com.wzxy.uavfilingsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.entity.Manufacturers;
 import com.wzxy.uavfilingsystem.mapper.ManufacturersMapper;
 import com.wzxy.uavfilingsystem.service.ManufacturersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ManufacturersServiceImpl extends ServiceImpl<ManufacturersMapper, Manufacturers> implements ManufacturersService {
+    @Autowired
+    private ManufacturersMapper manufacturersMapper;
 
+    @Override
+    public IPage<Manufacturers> pageC(Page<Manufacturers> page, LambdaQueryWrapper<Manufacturers> lambdaQueryWrapper) {
+        return manufacturersMapper.pageC(page,lambdaQueryWrapper);
+    }
 }

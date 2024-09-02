@@ -60,8 +60,6 @@ public class UserprofileController {
     public List<Userprofile> listPage(@RequestBody QueryPageParam query){
         System.out.println(query);
         HashMap param =query.getParam();
-        System.out.println("Param: " + param);
-        System.out.println("User ID=== " + param.get("userid"));
         String useridStr = (String)param.get("userid");
         Integer userid =null;
         //创建page对象

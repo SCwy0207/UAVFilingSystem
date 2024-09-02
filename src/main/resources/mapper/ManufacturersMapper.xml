@@ -16,4 +16,7 @@
         ManufacturerID, ManufacturerName, Country, Website, CreatedAt
     </sql>
 
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Manufacturers">
+        select * from manufacturers ${ew.customSqlSegment}
+    </select>
 </mapper>

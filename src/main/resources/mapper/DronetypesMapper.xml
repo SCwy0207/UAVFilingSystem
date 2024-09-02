@@ -17,4 +17,19 @@
         DroneTypeID, ManufacturerID, Model, RegistrationName, AllowFlight, CreatedAt
     </sql>
 
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Dronetypes">
+        select * from dronetypes ${ew.customSqlSegment}
+    </select>
+
+    <update id="modAllowflight" parameterType="map">
+        UPDATE dronetypes
+        SET allowflight = #{allowflight}
+        WHERE model = #{model}
+    </update>
+
+    <update id="update">
+        UPDATE dronetypes
+        SET model = #{model}
+        WHERE  = #{model} AND RegistrationName = #{registrationName}
+    </update>
 </mapper>
