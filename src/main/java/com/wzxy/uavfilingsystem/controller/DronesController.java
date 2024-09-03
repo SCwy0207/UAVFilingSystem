@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
 import com.wzxy.uavfilingsystem.entity.Drones;
+import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.DronesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,13 @@ public class DronesController {
     public List<Drones> search(@RequestBody Drones drones){
         LambdaQueryWrapper<Drones> lambdaQueryWrapper =new LambdaQueryWrapper();
         lambdaQueryWrapper.eq(Drones::getDroneid,drones.getDroneid());
+        return dronesService.list(lambdaQueryWrapper);
+    }
+    //查询用户拥有的无人机
+    @PostMapping("/searchDronesByUserid")
+    public List<Drones> searchDronesByUserid(@RequestBody Drones drones){
+        LambdaQueryWrapper<Drones> lambdaQueryWrapper =new LambdaQueryWrapper();
+        lambdaQueryWrapper.eq(Drones::getUserid,drones.getUserid());
         return dronesService.list(lambdaQueryWrapper);
     }
     //分页查询

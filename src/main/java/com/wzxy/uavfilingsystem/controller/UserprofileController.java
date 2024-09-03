@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
 import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
+import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.UserprofileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,13 @@ public class UserprofileController {
     public List<Userprofile> search(@RequestBody Userprofile userprofile){
         LambdaQueryWrapper<Userprofile> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Userprofile::getProfileid,userprofile.getProfileid());
+        return userprofileService.list(lambdaQueryWrapper);
+    }
+    @PostMapping("/searchProfileByUserid")
+    public List<Userprofile> searchProfileByUserid(@RequestBody Userprofile userprofile){
+        System.out.println("Searching for user profile with User ID: " + userprofile.getUserid());
+        LambdaQueryWrapper<Userprofile> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Userprofile::getUserid, userprofile.getUserid());
         return userprofileService.list(lambdaQueryWrapper);
     }
 

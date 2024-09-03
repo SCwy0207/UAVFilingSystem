@@ -54,6 +54,15 @@ public class UsersController {
         //lambdaQueryWrapper.eq(Users::getUsername,user.getUsername());
         return usersService.list(lambdaQueryWrapper);
     }
+    @PostMapping("/searchDetail")
+    public List<Users> searchDetail(@RequestBody Users user){
+        LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper();
+        if(StringUtils.isNotBlank(user.getUsername())){
+            lambdaQueryWrapper.eq(Users::getUsername,user.getUsername());
+        }
+        //lambdaQueryWrapper.eq(Users::getUsername,user.getUsername());
+        return usersService.list(lambdaQueryWrapper);
+    }
     //分页
     @PostMapping("/listPage")
     public List<Users> listPage(@RequestBody QueryPageParam query){
