@@ -19,4 +19,6 @@ public interface DronesService extends IService<Drones> {
     IPage<Drones> pageC(Page<Drones> page, LambdaQueryWrapper<Drones> lambdaQueryWrapper);
 
     Integer getDronesTotal();
+
+    boolean removeDronesByUserId(Integer userid);
 }

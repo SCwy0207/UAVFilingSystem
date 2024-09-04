@@ -20,4 +20,8 @@
     <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Droneflightareas">
         select * from droneflightareas ${ew.customSqlSegment}
     </select>
+
+    <delete id="deleteByDroneId">
+        DELETE FROM droneflightareas WHERE DroneID = #{droneid}
+    </delete>
 </mapper>

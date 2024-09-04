@@ -17,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface UserprofileService extends IService<Userprofile> {
 
     IPage<Userprofile> pageC(Page<Userprofile> page, LambdaQueryWrapper<Userprofile> lambdaQueryWrapper);
+
+    boolean removeUserprofileByUserId(Integer userid);
 }

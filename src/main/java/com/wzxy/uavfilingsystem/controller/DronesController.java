@@ -38,6 +38,10 @@ public class DronesController {
     //删除
     @GetMapping("/delete")
     public boolean delete(Integer droneid){return dronesService.removeById(droneid);}
+
+    //根据userid删除用户所有的无人机
+    @GetMapping("/deleteByUserid")
+    public boolean deleteByUserid(Integer userid){return dronesService.removeDronesByUserId(userid);}
     //修改
     @PostMapping("/mod")
     public boolean mod(@RequestBody Drones drone){return dronesService.updateById(drone);}

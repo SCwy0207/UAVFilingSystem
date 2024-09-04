@@ -9,6 +9,7 @@ import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
 import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.UserprofileService;
+import com.wzxy.uavfilingsystem.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,8 @@ import java.util.List;
 @RequestMapping("/userprofile")
 public class UserprofileController {
     @Autowired
+    private UsersService usersService;
+    @Autowired
     private UserprofileService userprofileService;
     //新增
     @PostMapping("/save")
@@ -38,9 +41,10 @@ public class UserprofileController {
         return userprofileService.save(userProfile);
     }
 
-    //删除
+    //通过userid删除对应的userprofile
     @GetMapping("/delete")
-    public boolean delete(Integer profileid){return userprofileService.removeById(profileid);}
+    public boolean delete(Integer userid){
+        return userprofileService.removeUserprofileByUserId(userid);}
     //修改
     @PostMapping("/mod")
     public boolean update(@RequestBody Userprofile userProfile){return userprofileService.updateById(userProfile);}

@@ -29,7 +29,7 @@ public class ManufacturersServiceImpl extends ServiceImpl<ManufacturersMapper, M
     }
 
     @Override
-    public Integer getManufacturerTotal() {
-        return manufacturersMapper.getManufacturerTotal();
+    public Integer getManufacturersTotal() {
+        return manufacturersMapper.getManufacturersTotal();
     }
 }

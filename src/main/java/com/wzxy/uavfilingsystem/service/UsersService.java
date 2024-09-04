@@ -18,5 +18,7 @@ public interface UsersService extends IService<Users> {
 
     IPage<Users> pageC(Page<Users> page, LambdaQueryWrapper<Users> lambdaQueryWrapper);
 
-    Integer getUserTotal();
+    Integer getUsersTotal();
+
+    Integer getUsersInActiveTotal();
 }

@@ -27,4 +27,9 @@ public class UserprofileServiceImpl extends ServiceImpl<UserprofileMapper, Userp
     public IPage<Userprofile> pageC(Page<Userprofile> page, LambdaQueryWrapper<Userprofile> lambdaQueryWrapper) {
         return userprofileMapper.pageC(page,lambdaQueryWrapper);
     }
+
+    @Override
+    public boolean removeUserprofileByUserId(Integer userid) {
+        return userprofileMapper.removeUserprofileByUserId(userid);
+    }
 }

@@ -22,4 +22,8 @@
         SELECT * FROM userprofile ${ew.customSqlSegment}
     </select>
 
+    <delete id="removeUserprofileByUserId">
+        DELETE FROM userprofile
+        WHERE userid = #{userId}
+    </delete>
 </mapper>

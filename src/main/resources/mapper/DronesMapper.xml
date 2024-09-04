@@ -32,4 +32,13 @@
     <select id="getDronesTotal" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM drones
     </select>
+
+    <delete id="removeDronesByUserId">
+        DELETE FROM drones
+        WHERE userid = #{userId}
+    </delete>
+
+    <select id="getDronesByUserId" resultMap="BaseResultMap">
+        SELECT * FROM drones WHERE userid = #{userid}
+    </select>
 </mapper>

@@ -22,5 +22,7 @@ public interface UsersMapper extends BaseMapper<Users> {
 
     IPage<Users> pageC(Page<Users> page, @Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
 
-    Integer getUserTotal();
+    Integer getUsersTotal();
+
+    Integer getUsersInActiveTotal();
 }

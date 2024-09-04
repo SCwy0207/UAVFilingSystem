@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  * 存储无人机的详细信息 Mapper 接口
@@ -23,4 +25,8 @@ public interface DronesMapper extends BaseMapper<Drones> {
     IPage<Drones> pageC(Page<Drones> page,@Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
 
     Integer getDronesTotal();
+
+    boolean removeDronesByUserId(Integer userid);
+
+    List<Drones> getDronesByUserId(Integer userid);
 }

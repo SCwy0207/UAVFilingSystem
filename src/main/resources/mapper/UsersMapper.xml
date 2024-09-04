@@ -24,7 +24,13 @@
         select * from users ${ew.customSqlSegment}
     </select>
 
-    <select id="getUserTotal" resultType="java.lang.Integer">
+    <select id="getUsersTotal" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM users
+    </select>
+
+    <select id="getUsersInActiveTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM users
+        WHERE status = 'inactive'
     </select>
 </mapper>

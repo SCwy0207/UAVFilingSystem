@@ -18,5 +18,5 @@ public interface ManufacturersService extends IService<Manufacturers> {
 
     IPage<Manufacturers> pageC(Page<Manufacturers> page, LambdaQueryWrapper<Manufacturers> lambdaQueryWrapper);
 
-    Integer getManufacturerTotal();
+    Integer getManufacturersTotal();
 }

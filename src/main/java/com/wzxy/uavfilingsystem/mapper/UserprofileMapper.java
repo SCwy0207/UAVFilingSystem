@@ -21,4 +21,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserprofileMapper extends BaseMapper<Userprofile> {
 
     IPage<Userprofile> pageC(Page<Userprofile> page, @Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
+
+    boolean removeUserprofileByUserId(Integer userid);
 }

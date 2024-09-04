@@ -31,8 +31,10 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
     //获取用户总数
-    @GetMapping("/getUserTotal")
-    public Integer getUserTotal(){ return usersService.getUserTotal();}
+    @GetMapping("/getUsersTotal")
+    public Integer getUsersTotal(){ return usersService.getUsersTotal();}
+    @GetMapping("/getUsersInActiveTotal")
+    public Integer getUsersInActiveTotal(){ return usersService.getUsersInActiveTotal();}
     @GetMapping("/list")
     public List<Users> list(){return usersService.list();}
     //新增

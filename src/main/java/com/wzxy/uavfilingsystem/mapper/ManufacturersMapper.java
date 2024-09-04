@@ -22,5 +22,5 @@ public interface ManufacturersMapper extends BaseMapper<Manufacturers> {
 
     IPage<Manufacturers> pageC(Page<Manufacturers> page, @Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
 
-    Integer getManufacturerTotal();
+    Integer getManufacturersTotal();
 }

@@ -36,8 +36,8 @@ public class ManufacturersController {
     @Autowired
     private DronetypesService dronetypesService;
     //获取无人机厂商总数
-    @GetMapping("/getManufacturerTotal")
-    public Integer getManufacturerTotal(){return manufacturersService.getManufacturerTotal();}
+    @GetMapping("/getManufacturersTotal")
+    public Integer getManufacturersTotal(){return manufacturersService.getManufacturersTotal();}
 
     @GetMapping("/list")
     public List<Manufacturers> list(){return manufacturersService.list();}

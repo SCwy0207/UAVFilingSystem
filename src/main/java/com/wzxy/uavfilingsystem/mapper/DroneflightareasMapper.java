@@ -21,4 +21,6 @@ import org.apache.ibatis.annotations.Param;
 public interface DroneflightareasMapper extends BaseMapper<Droneflightareas> {
 
     IPage<Droneflightareas> pageC(Page<Droneflightareas> page,@Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
+
+    void deleteByDroneId(int droneId);
 }

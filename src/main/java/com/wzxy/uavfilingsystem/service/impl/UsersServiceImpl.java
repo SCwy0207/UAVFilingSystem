@@ -30,7 +30,12 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     }
 
     @Override
-    public Integer getUserTotal() {
-        return usersMapper.getUserTotal();
+    public Integer getUsersTotal() {
+        return usersMapper.getUsersTotal();
+    }
+
+    @Override
+    public Integer getUsersInActiveTotal() {
+        return usersMapper.getUsersInActiveTotal();
     }
 }

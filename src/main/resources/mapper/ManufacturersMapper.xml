@@ -20,7 +20,7 @@
         select * from manufacturers ${ew.customSqlSegment}
     </select>
 
-    <select id="getManufacturerTotal" resultType="java.lang.Integer">
+    <select id="getManufacturersTotal" resultType="java.lang.Integer">
         select count(*) from manufacturers
     </select>
 </mapper>
