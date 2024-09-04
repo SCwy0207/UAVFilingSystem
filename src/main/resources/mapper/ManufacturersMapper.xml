@@ -19,4 +19,8 @@
     <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Manufacturers">
         select * from manufacturers ${ew.customSqlSegment}
     </select>
+
+    <select id="getManufacturerTotal" resultType="java.lang.Integer">
+        select count(*) from manufacturers
+    </select>
 </mapper>

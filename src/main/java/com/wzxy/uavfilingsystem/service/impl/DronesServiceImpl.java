@@ -27,4 +27,9 @@ public class DronesServiceImpl extends ServiceImpl<DronesMapper, Drones> impleme
     public IPage<Drones> pageC(Page<Drones> page, LambdaQueryWrapper<Drones> lambdaQueryWrapper) {
         return dronesMapper.pageC(page,lambdaQueryWrapper);
     }
+
+    @Override
+    public Integer getDronesTotal() {
+        return dronesMapper.getDronesTotal();
+    }
 }

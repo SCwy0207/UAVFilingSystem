@@ -17,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface DronesService extends IService<Drones> {
 
     IPage<Drones> pageC(Page<Drones> page, LambdaQueryWrapper<Drones> lambdaQueryWrapper);
+
+    Integer getDronesTotal();
 }

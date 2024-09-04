@@ -32,4 +32,8 @@
         SET model = #{model}
         WHERE  = #{model} AND RegistrationName = #{registrationName}
     </update>
+
+    <select id="getDroneTypesTotal" resultType="java.lang.Integer">
+        select count(*) from dronetypes
+    </select>
 </mapper>

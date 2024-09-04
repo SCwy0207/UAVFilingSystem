@@ -28,4 +28,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     public IPage<Users> pageC(Page<Users> page, LambdaQueryWrapper<Users> lambdaQueryWrapper) {
         return usersMapper.pageC(page,lambdaQueryWrapper);
     }
+
+    @Override
+    public Integer getUserTotal() {
+        return usersMapper.getUserTotal();
+    }
 }

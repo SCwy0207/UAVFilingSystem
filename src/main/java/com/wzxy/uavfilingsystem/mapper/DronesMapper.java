@@ -21,4 +21,6 @@ import org.apache.ibatis.annotations.Param;
 public interface DronesMapper extends BaseMapper<Drones> {
 
     IPage<Drones> pageC(Page<Drones> page,@Param(Constants.WRAPPER) LambdaQueryWrapper lambdaQueryWrapper);
+
+    Integer getDronesTotal();
 }

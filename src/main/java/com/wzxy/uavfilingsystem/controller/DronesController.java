@@ -27,7 +27,9 @@ import java.util.List;
 public class DronesController {
     @Autowired
     private DronesService dronesService;
-
+    //查询无人机数量
+    @GetMapping("/getDronesTotal")
+    public Integer getDronesTotal(){return dronesService.getDronesTotal();}
     @GetMapping("/list")
     public List<Drones> list(){return dronesService.list();}
     //新增

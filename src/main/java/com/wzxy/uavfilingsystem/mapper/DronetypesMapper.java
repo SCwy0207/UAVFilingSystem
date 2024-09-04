@@ -26,4 +26,6 @@ public interface DronetypesMapper extends BaseMapper<Dronetypes> {
     boolean modAllowflight(String model, Boolean allowflight);
 
     boolean update(String model, String registrationname, boolean allowFlight);
+
+    Integer getDroneTypesTotal();
 }

@@ -38,4 +38,9 @@ public class DronetypesServiceImpl extends ServiceImpl<DronetypesMapper, Dronety
     public boolean update(String model, String registrationname, boolean allowFlight) {
         return dronetypesMapper.update(model,registrationname,allowFlight);
     }
+
+    @Override
+    public Integer getDroneTypesTotal() {
+        return dronetypesMapper.getDroneTypesTotal();
+    }
 }

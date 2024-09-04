@@ -27,4 +27,9 @@ public class ManufacturersServiceImpl extends ServiceImpl<ManufacturersMapper, M
     public IPage<Manufacturers> pageC(Page<Manufacturers> page, LambdaQueryWrapper<Manufacturers> lambdaQueryWrapper) {
         return manufacturersMapper.pageC(page,lambdaQueryWrapper);
     }
+
+    @Override
+    public Integer getManufacturerTotal() {
+        return manufacturersMapper.getManufacturerTotal();
+    }
 }

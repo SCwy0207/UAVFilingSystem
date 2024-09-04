@@ -35,6 +35,11 @@ public class DronetypesController {
     private DronetypesService dronetypesService;
     @Autowired
     private ManufacturersService manufacturersService;
+    //获取所有无人机型号数量
+    @GetMapping("/getDroneTypesTotal")
+    public Integer getDroneTypesTotal() {
+        return dronetypesService.getDroneTypesTotal();
+    }
     @GetMapping("/list")
     public List<Dronetypes> list(){return dronetypesService.list();}
 

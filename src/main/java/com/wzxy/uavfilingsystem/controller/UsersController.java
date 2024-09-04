@@ -30,6 +30,9 @@ import java.util.Map;
 public class UsersController {
     @Autowired
     private UsersService usersService;
+    //获取用户总数
+    @GetMapping("/getUserTotal")
+    public Integer getUserTotal(){ return usersService.getUserTotal();}
     @GetMapping("/list")
     public List<Users> list(){return usersService.list();}
     //新增
