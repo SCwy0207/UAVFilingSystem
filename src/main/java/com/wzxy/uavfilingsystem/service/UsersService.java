@@ -21,4 +21,6 @@ public interface UsersService extends IService<Users> {
     Integer getUsersTotal();
 
     Integer getUsersInActiveTotal();
+
+    Users login(String username, String password);
 }
