@@ -81,5 +81,9 @@ public class Drones implements Serializable {
     @TableField("SerialPhoto")
     private String serialphoto;
 
+    @ApiModelProperty(value = "无人机备案状态")
+    @TableField("Filing")
+    private Integer filing;
+
 
 }

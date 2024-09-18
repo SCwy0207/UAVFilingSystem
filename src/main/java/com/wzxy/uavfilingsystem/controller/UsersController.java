@@ -39,7 +39,7 @@ public class UsersController {
     public List<Users> list(){return usersService.list();}
     //新增
     @PostMapping("/save")
-    public boolean save(@RequestBody Users user){ return usersService.save(user);}
+    public boolean save(@RequestBody Users user){return usersService.save(user);}
     //删除
     @GetMapping("/delete")
     public boolean delete(Integer userid){ return usersService.removeById(userid);}

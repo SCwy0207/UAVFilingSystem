@@ -23,6 +23,10 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
         // 从 HTTP请求头中取出 token
         String token = httpServletRequest.getHeader("Authorization");
+        if (token.startsWith("Bearer")) {
+            token = token.substring(7);
+        }
+        System.out.println("::"+token);
         if (token == null) {
             throw new RuntimeException("无token，请重新登录");
         }
@@ -39,7 +43,8 @@ public class JwtInterceptor implements HandlerInterceptor {
         //令牌失效
             throw new RuntimeException("令牌失效");
         }catch (Exception e){
-            log.error(e.getMessage());
+
+            e.printStackTrace();
 //服务器内部错误
             throw new
                     ServiceException(ResultCode.SYSTEM_INNER_ERROR);

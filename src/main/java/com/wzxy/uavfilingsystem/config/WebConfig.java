@@ -26,8 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/manufacturers/**")
                 .addPathPatterns("/droneflightareas/**")
 //不需要被校验url: 查询所有一级栏目及其二级栏目的接口(供前台使用)
-                .excludePathPatterns("/login",
-                        "/register");
+                .excludePathPatterns("/login/**", "/register/**");
     }
     /**
      * (新增代码)创建jwt拦截器对象并加入spring容器

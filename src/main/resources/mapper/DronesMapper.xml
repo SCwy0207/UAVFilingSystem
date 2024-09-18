@@ -18,11 +18,12 @@
         <result column="Purpose" property="purpose" />
         <result column="FrontPhoto" property="frontphoto" />
         <result column="SerialPhoto" property="serialphoto" />
+        <result column="Filing" property="filing" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        DroneID, UserID, Manufacturer, ProductName, Model, SerialNumber, UniqueID, Category, Type, EmptyWeight, MaxTakeoffWeight, Purpose, FrontPhoto, SerialPhoto
+        DroneID, UserID, Manufacturer, ProductName, Model, SerialNumber, UniqueID, Category, Type, EmptyWeight, MaxTakeoffWeight, Purpose, FrontPhoto, SerialPhoto, Filing
     </sql>
 
     <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Drones">

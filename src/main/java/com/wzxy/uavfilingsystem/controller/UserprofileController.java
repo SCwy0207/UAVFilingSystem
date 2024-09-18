@@ -5,9 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
-import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
-import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.UserprofileService;
 import com.wzxy.uavfilingsystem.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +55,16 @@ public class UserprofileController {
     public List<Userprofile> search(@RequestBody Userprofile userprofile){
         LambdaQueryWrapper<Userprofile> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Userprofile::getProfileid,userprofile.getProfileid());
+        return userprofileService.list(lambdaQueryWrapper);
+    }
+    //获通过userid取用户信息详情
+    @PostMapping("/searchDetail")
+    public List<Userprofile> searchDetail(@RequestBody Userprofile userid){
+        LambdaQueryWrapper<Userprofile> lambdaQueryWrapper = new LambdaQueryWrapper();
+        if(userid.getUserid() != null){
+            lambdaQueryWrapper.eq(Userprofile::getUserid,userid.getUserid());
+        }
+        //lambdaQueryWrapper.eq(Users::getUsername,user.getUsername());
         return userprofileService.list(lambdaQueryWrapper);
     }
     @PostMapping("/searchProfileByUserid")

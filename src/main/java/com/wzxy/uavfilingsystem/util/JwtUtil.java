@@ -6,12 +6,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 import java.util.Map;
 
 public class JwtUtil {
     // 生成一个安全的密钥 (HS256需要至少256位)
-    public static final SecretKey signKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static final SecretKey signKey = new SecretKeySpec("system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111system111111111111111111111111111".getBytes(),SignatureAlgorithm.HS256.getJcaName());
 
     // 过期时间(1天), 通常设置为30分钟
     private static final Long expire = 60 * 60 * 24 * 1000L;
@@ -28,7 +29,7 @@ public class JwtUtil {
                 // 设置过期时间
                 .setExpiration(new Date(System.currentTimeMillis() + expire))
                 // 使用生成的安全密钥进行签名
-                .signWith(signKey)
+                .signWith(SignatureAlgorithm.HS256, signKey)
                 .compact();
         return jwt;
     }
