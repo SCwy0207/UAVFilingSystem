@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
+import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Drones;
+import com.wzxy.uavfilingsystem.entity.Dronetypes;
 import com.wzxy.uavfilingsystem.entity.Users;
+import com.wzxy.uavfilingsystem.mapper.DronetypesMapper;
 import com.wzxy.uavfilingsystem.service.DronesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +30,9 @@ import java.util.List;
 public class DronesController {
     @Autowired
     private DronesService dronesService;
+    @Autowired
+    private DronetypesMapper dronetypesMapper;
+
     //查询无人机数量
     @GetMapping("/getDronesTotal")
     public Integer getDronesTotal(){return dronesService.getDronesTotal();}
@@ -79,5 +85,35 @@ public class DronesController {
         IPage<Drones> result = dronesService.pageC(page,lambdaQueryWrapper);
         System.out.println("total==="+result.getTotal());
         return result.getRecords();
+    }
+    @PostMapping("/filing1")
+    public Result filing1(@RequestBody Drones drones){
+        LambdaQueryWrapper<Dronetypes> lambdaQueryWrapper =new LambdaQueryWrapper();
+        lambdaQueryWrapper.eq(Dronetypes::getModel,drones.getModel()).eq(Dronetypes::getProductName,drones.getProductname());
+        Dronetypes dronetype = dronetypesMapper.selectOne(lambdaQueryWrapper);
+        if (dronetype != null) {
+            drones.setManufacturer(dronetype.getManufacturer());
+            drones.setCategory(dronetype.getCategory());
+            drones.setType(dronetype.getType());
+            drones.setEmptyweight(dronetype.getEmptyWeight());
+            drones.setMaxtakeoffweight(dronetype.getMaxTakeoffWeight());
+            drones.setPurpose(dronetype.getPurpose());
+        } else {
+            return Result.fail("未找到匹配的型号或产品名称！");
+        }
+        drones.setFiling(0);
+        return Result.success(dronesService.save(drones));
+    }
+
+    @GetMapping("/deleteBySerialNumber")
+    public Result deleteBySerialNumber(String serialNumber){
+        LambdaQueryWrapper<Drones> lambdaQueryWrapper =new LambdaQueryWrapper();
+        lambdaQueryWrapper.eq(Drones::getSerialnumber,serialNumber);
+        boolean isDeleted = dronesService.remove(lambdaQueryWrapper);
+        if (isDeleted) {
+            return Result.success("删除成功");
+        } else {
+            return Result.fail("删除失败");
+        }
     }
 }

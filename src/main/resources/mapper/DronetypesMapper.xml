@@ -7,14 +7,14 @@
         <id column="DroneTypeID" property="dronetypeid" />
         <result column="ManufacturerID" property="manufacturerid" />
         <result column="Model" property="model" />
-        <result column="RegistrationName" property="registrationname" />
-        <result column="AllowFlight" property="allowflight" />
-        <result column="CreatedAt" property="createdat" />
+        <result column="RegistrationName" property="productName" />
+        <result column="AllowFlight" property="allowFlight" />
+        <result column="CreatedAt" property="createdAt" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        DroneTypeID, ManufacturerID, Model, RegistrationName, AllowFlight, CreatedAt
+        DroneTypeID, ManufacturerID, Model, productName, AllowFlight, CreatedAt
     </sql>
 
     <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Dronetypes">
@@ -30,7 +30,7 @@
     <update id="update">
         UPDATE dronetypes
         SET model = #{model}
-        WHERE  = #{model} AND RegistrationName = #{registrationName}
+        WHERE  = #{model} AND productName = #{productName}
     </update>
 
     <select id="getDroneTypesTotal" resultType="java.lang.Integer">

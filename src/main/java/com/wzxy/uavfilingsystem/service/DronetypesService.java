@@ -19,9 +19,9 @@ public interface DronetypesService extends IService<Dronetypes> {
 
     IPage<Dronetypes> pageC(Page<Userprofile> page, LambdaQueryWrapper<Dronetypes> lambdaQueryWrapper);
 
-    boolean modAllowflight(String model, Boolean allowflight);
+    boolean modAllowflight(String model, Boolean allowFlight);
 
-    boolean update(String model, String registrationname, boolean allowFlight);
+    boolean update(String model, String productName, boolean allowFlight);
 
     Integer getDroneTypesTotal();
 }

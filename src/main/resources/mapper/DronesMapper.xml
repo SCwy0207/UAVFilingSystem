@@ -27,7 +27,7 @@
     </sql>
 
     <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Drones">
-        select * from drones ${ew.customSqlSegment}
+        SELECT * FROM drones ${ew.customSqlSegment}
     </select>
 
     <select id="getDronesTotal" resultType="java.lang.Integer">

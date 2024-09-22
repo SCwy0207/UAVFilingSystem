@@ -55,6 +55,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
         return user;
     }
+
+    @Override
+    public void updateUserAvatar(String username, String avatarUrl) {
+        usersMapper.updateUserAvatar(username,avatarUrl);
+    }
     //    //当数据库密码没加密的时候可以用这个破解md5
 //    @Override
 //    public Users login(String username, String password) {

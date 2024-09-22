@@ -21,4 +21,5 @@ public interface DronesService extends IService<Drones> {
     Integer getDronesTotal();
 
     boolean removeDronesByUserId(Integer userid);
+
 }

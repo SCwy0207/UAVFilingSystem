@@ -82,8 +82,8 @@ public class DronetypesController {
     @PostMapping("/search")
     public List<Dronetypes> search(@RequestBody Dronetypes dronetype){
         LambdaQueryWrapper<Dronetypes> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        if (StringUtils.isNotBlank(dronetype.getRegistrationname())){
-                lambdaQueryWrapper.eq(Dronetypes::getRegistrationname,dronetype.getRegistrationname());
+        if (StringUtils.isNotBlank(dronetype.getProductName())){
+                lambdaQueryWrapper.eq(Dronetypes::getProductName,dronetype.getProductName());
         }
         return dronetypesService.list(lambdaQueryWrapper);
     }
@@ -131,14 +131,14 @@ public class DronetypesController {
            return result;
        }
     }
-    //分页查询(通过registrationname)
+    //分页查询(通过ProductName)
     @PostMapping("/listPage")
     public Result listPage(@RequestBody QueryPageParam query){
         HashMap param = query.getParam();
-        String registrationname = (String) param.get("registrationname");
+        String productName = (String) param.get("productName");
         LambdaQueryWrapper<Dronetypes> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        if(StringUtils.isNotBlank(registrationname)&&!"null".equals(registrationname)){
-            lambdaQueryWrapper.like(Dronetypes::getRegistrationname,registrationname);
+        if(StringUtils.isNotBlank(productName)&&!"null".equals(productName)){
+            lambdaQueryWrapper.like(Dronetypes::getProductName,productName);
         }
         //创建page对象
         Page<Userprofile> page =new Page();
@@ -149,6 +149,6 @@ public class DronetypesController {
     }
     //修改飞行状态allowflight
     @GetMapping("/modAllowflight")
-    public boolean modAllowflight(@RequestParam String model, @RequestParam Boolean allowflight){return dronetypesService.modAllowflight(model,allowflight);}
+    public boolean modAllowflight(@RequestParam String model, @RequestParam Boolean allowFlight){return dronetypesService.modAllowflight(model,allowFlight);}
 
 }

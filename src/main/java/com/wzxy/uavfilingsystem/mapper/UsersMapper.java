@@ -25,4 +25,6 @@ public interface UsersMapper extends BaseMapper<Users> {
     Integer getUsersTotal();
 
     Integer getUsersInActiveTotal();
+
+    void updateUserAvatar(@Param("username") String username, @Param("avatarUrl") String avatarUrl);
 }

@@ -30,13 +30,13 @@ public class DronetypesServiceImpl extends ServiceImpl<DronetypesMapper, Dronety
     }
 
     @Override
-    public boolean modAllowflight(String model, Boolean allowflight) {
-        return dronetypesMapper.modAllowflight(model,allowflight);
+    public boolean modAllowflight(String model, Boolean allowFlight) {
+        return dronetypesMapper.modAllowflight(model,allowFlight);
     }
 
     @Override
-    public boolean update(String model, String registrationname, boolean allowFlight) {
-        return dronetypesMapper.update(model,registrationname,allowFlight);
+    public boolean update(String model, String productName, boolean allowFlight) {
+        return dronetypesMapper.update(model,productName,allowFlight);
     }
 
     @Override

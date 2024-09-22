@@ -46,6 +46,14 @@ public class UsersController {
     //修改
     @PostMapping("/mod")
     public boolean mod(@RequestBody Users user){ return usersService.updateById(user);}
+    @PostMapping("/mod2")
+    public Result mod2(@RequestBody Users user){
+        Boolean result = usersService.updateById(user);
+        if(result){
+            return Result.success();
+        }
+        return Result.fail();
+    }
     //新增或修改
     @PostMapping("/saveOrMod")
     public boolean saveOrMod(@RequestBody Users user){ return usersService.saveOrUpdate(user);}
@@ -127,6 +135,19 @@ public class UsersController {
         }
 
         return response;
+    }
+    @GetMapping("/get200Userid")
+    public Result get200Userid(@RequestParam String username) {
+        LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Users::getUsername, username);
+
+        // 查询匹配的用户
+        Users user = usersService.getOne(lambdaQueryWrapper);
+
+        if (user != null) {
+            return Result.success(user.getUserid());
+        }
+        return Result.fail("error,用户未找到");
     }
 
 }

@@ -23,4 +23,6 @@ public interface UsersService extends IService<Users> {
     Integer getUsersInActiveTotal();
 
     Users login(String username, String password);
+
+    void updateUserAvatar(String username, String avatarUrl);
 }

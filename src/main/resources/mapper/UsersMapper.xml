@@ -33,4 +33,10 @@
         FROM users
         WHERE status = 'inactive'
     </select>
+
+    <update id="updateUserAvatar" parameterType="map">
+        UPDATE users
+        SET Avatar_Url = #{avatarUrl}
+        WHERE Username = #{username}
+    </update>
 </mapper>

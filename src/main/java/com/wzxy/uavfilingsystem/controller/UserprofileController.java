@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
+import com.wzxy.uavfilingsystem.common.Result;
 import com.wzxy.uavfilingsystem.entity.Userprofile;
+import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.service.UserprofileService;
 import com.wzxy.uavfilingsystem.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -46,6 +49,14 @@ public class UserprofileController {
     //修改
     @PostMapping("/mod")
     public boolean update(@RequestBody Userprofile userProfile){return userprofileService.updateById(userProfile);}
+    @PostMapping("/mod2")
+    public Result update2(@RequestBody Userprofile userProfile){
+        Boolean result =userprofileService.updateById(userProfile);
+        if(result){
+            return Result.success();
+        }
+        return Result.fail();
+    }
     //新增或修改
     @PostMapping("/saveOrMod")
     public boolean saveOrMod(@RequestBody Userprofile userprofile){return userprofileService.saveOrUpdate(userprofile);}
@@ -98,5 +109,22 @@ public class UserprofileController {
         System.out.println("total==="+result.getTotal());
         return result.getRecords();
     }
+    @GetMapping("/getProfileid")
+    public Map<String, Object> getUserid(@RequestParam String userid) {
+        LambdaQueryWrapper<Userprofile> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Userprofile::getUserid, userid);
 
+        // 查询匹配的用户
+        Userprofile userprofile = userprofileService.getOne(lambdaQueryWrapper);
+
+        // 准备返回数据
+        Map<String, Object> response = new HashMap<>();
+        if (userprofile != null) {
+            response.put("profileid", userprofile.getProfileid());
+        } else {
+            response.put("error", "用户未找到");
+        }
+
+        return response;
+    }
 }

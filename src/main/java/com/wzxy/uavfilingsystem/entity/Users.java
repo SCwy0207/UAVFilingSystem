@@ -61,5 +61,8 @@ public class Users implements Serializable {
     @TableField("RoleId")
     private Integer roleid;
 
+    @ApiModelProperty(value = "用户头像")
+    @TableField("Avatar_Url")
+    private String avatar;
 
 }
