@@ -24,4 +24,6 @@ public interface DronetypesService extends IService<Dronetypes> {
     boolean update(String model, String productName, boolean allowFlight);
 
     Integer getDroneTypesTotal();
+
+    String getManufacturerByManufacturerid(int manufacturerid);
 }

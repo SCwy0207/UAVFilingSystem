@@ -61,7 +61,7 @@ public class UploadController {
             // 处理第一个图片
             String frontPhotoName = sn + "_FrontPhoto";
             String frontPhotoUrl = qiniuUtils.uploadFiling(droneImage1.getInputStream(), frontPhotoName);
-            System.out.println("FrontPhoto URL: " + frontPhotoUrl);
+            dronesService.updateFrontPhotoUrl(sn, frontPhotoUrl);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class UploadController {
             // 处理第二个图片
             String serialPhotoName = sn + "_SerialPhoto";
             String serialPhotoUrl = qiniuUtils.uploadFiling(droneImage2.getInputStream(), serialPhotoName);
-            System.out.println("SerialPhoto URL: " + serialPhotoUrl);
+            dronesService.updateSerialPhotoUrl(sn, serialPhotoUrl);
 
         } catch (IOException e) {
             e.printStackTrace();

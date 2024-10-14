@@ -24,4 +24,8 @@
     <delete id="deleteByDroneId">
         DELETE FROM droneflightareas WHERE DroneID = #{droneid}
     </delete>
+
+    <delete id="removeDronesByDroneid">
+        DELETE FROM droneflightareas  WHERE DroneID = #{droneid}
+    </delete>
 </mapper>

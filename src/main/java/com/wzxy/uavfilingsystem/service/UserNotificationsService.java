@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserNotificationsService extends IService<UserNotifications> {
 
+    Boolean send(String id,String notifyTargets);
+
+    boolean read(Integer userid, String id);
 }

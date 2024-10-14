@@ -39,4 +39,31 @@
         SET Avatar_Url = #{avatarUrl}
         WHERE Username = #{username}
     </update>
+
+    <select id="findUserIdsByRoleId" resultType="java.lang.Long">
+        SELECT UserID
+        FROM users
+        WHERE RoleId = #{roleId}
+    </select>
+
+    <select id="findUserIdsByUsername" resultType="java.lang.Long">
+        SELECT UserID
+        FROM users
+        WHERE Username = #{username}
+    </select>
+
+    <select id="findAllUserIds" resultType="java.lang.Long">
+        SELECT UserID
+        FROM users
+    </select>
+
+    <update id="setStatus" parameterType="map">
+        UPDATE users SET Status = #{status} WHERE userId = #{userid}
+    </update>
+
+    <select id="getUserIdByUsername" resultType="java.lang.Integer">
+        SELECT UserID
+        FROM users
+        WHERE Username = #{username}
+    </select>
 </mapper>

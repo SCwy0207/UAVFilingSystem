@@ -17,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface DroneflightareasService extends IService<Droneflightareas> {
 
     IPage<Droneflightareas> pageC(Page<Droneflightareas> page, LambdaQueryWrapper<Droneflightareas> lambdaQueryWrapper);
+
+    Boolean removeDronesByDroneid(Integer droneid);
 }

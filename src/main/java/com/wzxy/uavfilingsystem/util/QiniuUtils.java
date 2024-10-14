@@ -57,6 +57,8 @@ public class QiniuUtils {
     public String uploadFile(InputStream inputStream, String username) throws QiniuException {
         // 构建文件路径：username/avatar.png
         String fileName = "Avatar" + "/"+username+"avatar.png";
+        //动态生成Token
+        String upToken = auth.uploadToken(bucket);
         // 上传文件
         Response response = uploadManager.put(inputStream, fileName, upToken, null, null);
         if (response.isOK()) {
@@ -79,6 +81,8 @@ public class QiniuUtils {
 
     public String uploadFiling(InputStream inputStream, String fileName) throws QiniuException {
         String ImageName="Filing"+ "/"+fileName+".png";
+        //动态生成Token
+        String upToken = auth.uploadToken(bucket);
         //上传文件
         Response response = uploadManager.put(inputStream, ImageName, upToken, null, null);
         if(response.isOK()){

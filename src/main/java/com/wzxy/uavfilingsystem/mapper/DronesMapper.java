@@ -29,4 +29,14 @@ public interface DronesMapper extends BaseMapper<Drones> {
     boolean removeDronesByUserId(Integer userid);
 
     List<Drones> getDronesByUserId(Integer userid);
+
+    List<Drones> getDronesByFiling(int i);
+    
+    void updateFrontPhotoUrl(String sn, String frontPhotoUrl);
+
+    void updateSerialPhotoUrl(String sn, String serialPhotoUrl);
+
+    Boolean refuse(String sn);
+
+    Boolean accept(String serialnumber);
 }

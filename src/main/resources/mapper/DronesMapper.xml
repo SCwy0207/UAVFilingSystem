@@ -42,4 +42,24 @@
     <select id="getDronesByUserId" resultMap="BaseResultMap">
         SELECT * FROM drones WHERE userid = #{userid}
     </select>
+
+    <select id="getDronesByFiling" resultMap="BaseResultMap">
+        SELECT * FROM drones WHERE filing = #{filing}
+    </select>
+
+    <update id="updateFrontPhotoUrl">
+        UPDATE drones SET FrontPhoto = #{frontPhotoUrl} WHERE SerialNumber = #{sn}
+    </update>
+
+    <update id="updateSerialPhotoUrl">
+        UPDATE drones SET SerialPhoto = #{serialPhotoUrl} WHERE SerialNumber= #{sn}
+    </update>
+
+    <select id="refuse" resultType="java.lang.Boolean">
+        UPDATE drones SET Filing = 3 WHERE SerialNumber = #{serialnumber}
+    </select>
+
+    <select id="accept" resultType="java.lang.Boolean">
+        UPDATE drones SET Filing = 1 WHERE SerialNumber = #{serialnumber}
+    </select>
 </mapper>

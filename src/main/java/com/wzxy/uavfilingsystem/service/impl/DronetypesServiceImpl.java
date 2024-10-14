@@ -43,4 +43,9 @@ public class DronetypesServiceImpl extends ServiceImpl<DronetypesMapper, Dronety
     public Integer getDroneTypesTotal() {
         return dronetypesMapper.getDroneTypesTotal();
     }
+
+    @Override
+    public String getManufacturerByManufacturerid(int manufacturerid) {
+        return dronetypesMapper.getManufacturerByManufacturerid(manufacturerid);
+    }
 }

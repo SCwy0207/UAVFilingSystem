@@ -16,4 +16,7 @@
         id, user_id, notification_id, is_read, read_time
     </sql>
 
+    <update id="read" parameterType="map">
+        update user_notifications set is_read =1 where notification_id = #{id} and user_id = #{userid}
+    </update>
 </mapper>

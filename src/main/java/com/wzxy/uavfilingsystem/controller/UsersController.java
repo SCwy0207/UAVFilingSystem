@@ -149,5 +149,22 @@ public class UsersController {
         }
         return Result.fail("error,用户未找到");
     }
+    @GetMapping("/getUsernameByUserid")
+    public Map<String, Object> getUsernameByUserid(@RequestParam Integer userid) {
+        LambdaQueryWrapper<Users> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Users::getUserid, userid);
+
+        // 查询匹配的用户
+        Users user = usersService.getOne(lambdaQueryWrapper);
+
+        // 准备返回数据
+        Map<String, Object> response = new HashMap<>();
+        if (user != null) {
+            response.put("username", user.getUsername());
+        }else{
+            response.put("error","系统错误");
+        }
+        return response;
+    }
 
 }

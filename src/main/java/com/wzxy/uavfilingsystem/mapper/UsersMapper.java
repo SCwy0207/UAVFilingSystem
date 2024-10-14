@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  * 存储用户的基本信息 Mapper 接口
@@ -27,4 +29,14 @@ public interface UsersMapper extends BaseMapper<Users> {
     Integer getUsersInActiveTotal();
 
     void updateUserAvatar(@Param("username") String username, @Param("avatarUrl") String avatarUrl);
+
+    List<Long> findUserIdsByRoleId(int id);
+
+    Long findUserIdsByUsername(String target);
+
+    List<Long> findAllUserIds();
+
+    void setStatus(Integer userid, String status);
+
+    Integer getUserIdByUsername(String username);
 }

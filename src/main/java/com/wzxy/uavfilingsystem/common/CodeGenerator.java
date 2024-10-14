@@ -45,7 +45,7 @@ public class CodeGenerator {
         AutoGenerator mpg = new AutoGenerator();
         //全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir")+"/UAVFilingSystem";
+        String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("文王寰宇");
         gc.setOpen(false);
@@ -145,7 +145,9 @@ String filePath) {
         // strategy.setSuperControllerClass("你⾃⼰的⽗类控制器,没有就不⽤设置!");
         //写于⽗类中的公共字段
         // strategy.setSuperEntityColumns("id");
-        strategy.setInclude(scanner("表名，多个英⽂逗号分割").split(","));
+//        strategy.setInclude(scanner("表名，多个英⽂逗号分割").split(","));
+        // 在 main 方法中替换
+        strategy.setInclude("notifications", "user_notifications");
         strategy.setControllerMappingHyphenStyle(true);
         //strategy.setTablePrefix(pc.getModuleName() + "_");
         //忽略表前缀tb_,⽐如说tb_user,直接映射成user对象

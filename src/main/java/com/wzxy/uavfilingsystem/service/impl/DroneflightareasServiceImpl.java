@@ -27,4 +27,9 @@ public class DroneflightareasServiceImpl extends ServiceImpl<DroneflightareasMap
     public IPage<Droneflightareas> pageC(Page<Droneflightareas> page, LambdaQueryWrapper<Droneflightareas> lambdaQueryWrapper) {
         return droneflightareasMapper.pageC(page,lambdaQueryWrapper);
     }
+
+    @Override
+    public Boolean removeDronesByDroneid(Integer droneid) {
+        return droneflightareasMapper.removeDronesByDroneid(droneid);
+    }
 }

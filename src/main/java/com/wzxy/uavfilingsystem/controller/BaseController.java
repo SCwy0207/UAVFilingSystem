@@ -56,8 +56,16 @@ public class BaseController {
         map.put("roleId", user.getRoleid());
         //token验证
         String token = JwtUtil.generateJwt(map);
-
+        usersService.setStatus(user.getUserid(),"inactive");
         return Result.successToken(200,token);
+    }
+    @GetMapping("/logout")
+    public Result logout(@RequestParam(value = "username", required = false) String username){
+        LambdaQueryWrapper<Users> lambdaQueryWrapper=new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Users::getUsername, username);
+        Users user = usersService.getOne(lambdaQueryWrapper);
+        usersService.setStatus(user.getUserid(),"active");
+        return Result.success();
     }
 //    @PostMapping("/register/userSave")
 //    public boolean save(@RequestBody Users user){

@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wzxy.uavfilingsystem.common.QueryPageParam;
 import com.wzxy.uavfilingsystem.common.Result;
+import com.wzxy.uavfilingsystem.entity.Droneflightareas;
 import com.wzxy.uavfilingsystem.entity.Drones;
 import com.wzxy.uavfilingsystem.entity.Dronetypes;
 import com.wzxy.uavfilingsystem.entity.Users;
 import com.wzxy.uavfilingsystem.mapper.DronetypesMapper;
+import com.wzxy.uavfilingsystem.service.DroneflightareasService;
 import com.wzxy.uavfilingsystem.service.DronesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,9 @@ public class DronesController {
     private DronesService dronesService;
     @Autowired
     private DronetypesMapper dronetypesMapper;
+    @Autowired
+    private DroneflightareasService droneflightareasService;
+
 
     //查询无人机数量
     @GetMapping("/getDronesTotal")
@@ -43,7 +48,15 @@ public class DronesController {
     public boolean save(@RequestBody Drones drone){return dronesService.save(drone);}
     //删除
     @GetMapping("/delete")
-    public boolean delete(Integer droneid){return dronesService.removeById(droneid);}
+    public boolean delete(Integer droneid){
+        Boolean result1=droneflightareasService.removeDronesByDroneid(droneid);
+        Boolean result2=dronesService.removeById(droneid);
+        if(result1==true && result2==true){
+            return true;
+        }else{
+            return false;
+        }
+        }
 
     //根据userid删除用户所有的无人机
     @GetMapping("/deleteByUserid")
@@ -115,5 +128,33 @@ public class DronesController {
         } else {
             return Result.fail("删除失败");
         }
+    }
+    @PostMapping("/filingManagement")
+    public Result filingManagement(){
+        try{
+            List<Drones> dronesUnfiling=dronesService.getDronesUnfiling();
+            Long total = (long) dronesUnfiling.size();
+            return Result.success(total,dronesUnfiling);
+        }catch(Exception e){
+            return Result.fail("获取未备案无人机数据失败");
+        }
+    }
+    @PostMapping("/FilingDrones")
+    public Result FilingDrones(@RequestBody Drones drones){
+        try{
+            List<Drones> dronesFiling=dronesService.getDronesByFiling(1);
+            Long total = (long) dronesFiling.size();
+            return Result.success(total,dronesFiling);
+        }catch(Exception e){
+            return Result.fail("获取备案无人机数据失败");
+        }
+    }
+    @GetMapping("/accept")
+    public Boolean accept(String serialnumber){
+        return dronesService.accept(serialnumber);
+    }
+    @GetMapping("/refuse")
+    public Boolean refuse(String serialnumber){
+        return dronesService.refuse(serialnumber);
     }
 }

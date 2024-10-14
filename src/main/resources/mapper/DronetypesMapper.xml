@@ -36,4 +36,8 @@
     <select id="getDroneTypesTotal" resultType="java.lang.Integer">
         select count(*) from dronetypes
     </select>
+
+    <select id="getManufacturerByManufacturerid" resultType="java.lang.String">
+        select ManufacturerName from manufacturers where ManufacturerID = #{manufacturerid}
+    </select>
 </mapper>

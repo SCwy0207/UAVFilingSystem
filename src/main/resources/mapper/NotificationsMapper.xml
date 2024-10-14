@@ -20,4 +20,23 @@
         id, title, content, notify_targets, scheduled_time, send_time, status, created_at, updated_at
     </sql>
 
+    <select id="pageC" resultType="com.wzxy.uavfilingsystem.entity.Notifications">
+        SELECT *
+        FROM notifications
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="pageTD" resultType="com.wzxy.uavfilingsystem.entity.Notifications">
+        SELECT * FROM notifications ORDER BY id DESC
+    </select>
+
+    <update id="send" parameterType="String">
+        UPDATE notifications
+        SET
+            send_time = NOW(),  -- 使用当前时间
+            scheduled_time = NULL,  -- 设置 scheduled_time 为 NULL
+            status = '已发送'  -- 更新状态为 '已发送'
+        WHERE id = #{id}
+    </update>
+
 </mapper>

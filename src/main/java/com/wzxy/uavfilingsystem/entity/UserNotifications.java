@@ -40,5 +40,4 @@ public class UserNotifications implements Serializable {
     @ApiModelProperty(value = "已读时间，未读时为空")
     private LocalDateTime readTime;
 
-
 }

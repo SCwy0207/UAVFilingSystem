@@ -45,7 +45,10 @@ public class DronetypesController {
 
     //新增
     @PostMapping("/save")
-    public boolean save(@RequestBody Dronetypes dronetype){return dronetypesService.save(dronetype);}
+    public boolean save(@RequestBody Dronetypes dronetype){
+        dronetype.setAllowFlight(false);
+        dronetype.setManufacturer(dronetypesService.getManufacturerByManufacturerid((Integer)dronetype.getManufacturerid()));
+        return dronetypesService.save(dronetype);}
     //删除
     @DeleteMapping("/delete")
     public ResponseEntity<String> delete(@RequestBody Map<String, Integer> payload) {

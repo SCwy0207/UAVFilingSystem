@@ -54,4 +54,34 @@ public class DronesServiceImpl extends ServiceImpl<DronesMapper, Drones> impleme
         return dronesMapper.removeDronesByUserId(userid);
     }
 
+    @Override
+    public List<Drones> getDronesUnfiling() {
+        return dronesMapper.getDronesByFiling(0);
+    }
+
+    @Override
+    public void updateFrontPhotoUrl(String sn, String frontPhotoUrl) {
+        dronesMapper.updateFrontPhotoUrl(sn, frontPhotoUrl);
+    }
+
+    @Override
+    public void updateSerialPhotoUrl(String sn, String serialPhotoUrl) {
+        dronesMapper.updateSerialPhotoUrl(sn, serialPhotoUrl);
+    }
+
+    @Override
+    public List<Drones> getDronesByFiling(int i) {
+        return dronesMapper.getDronesByFiling(1);
+    }
+
+    @Override
+    public Boolean refuse(String sn) {
+        return dronesMapper.refuse(sn);
+    }
+
+    @Override
+    public Boolean accept(String serialnumber) {
+        return dronesMapper.accept(serialnumber);
+    }
+
 }
